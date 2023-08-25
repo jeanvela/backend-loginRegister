@@ -1,7 +1,7 @@
 const app = require('./src/app.js')
 const { dbConnect } = require('./src/db.js')
-
-const Port = 3001
+require('dotenv').config()
+const Port = process.env.PORT
 
 dbConnect()
 app.listen(Port, () => {
