@@ -17,7 +17,7 @@ const app = express()
 
 app.use(cors({
     // origin: 'http://localhost:5173',
-    origin : 'https://poem-xi.vercel.app/',
+    origin : 'https://poem-7h96kcvr7-jeanvela.vercel.app/',
     // origin: '*',
     credentials: true
 }))
