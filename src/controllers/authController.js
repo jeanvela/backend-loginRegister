@@ -25,6 +25,7 @@ const register = async (req, res) => {
             sameSite: 'none', // para el deploy habilitar el uso de la cookie en solicitudes entre diferentes sitios.
             secure: true,
             httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000
         })
         res.status(200).json({
             id: userSave._id,
@@ -49,6 +50,7 @@ const login = async (req, res) => {
             sameSite: 'none', // para el deploy habilitar el uso de la cookie en solicitudes entre diferentes sitios.
             secure: true,
             httpOnly: true,
+            maxAge: 24 * 60 * 60 * 1000
         })
         res.status(200).json({
             // token: token,
