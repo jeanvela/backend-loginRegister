@@ -21,9 +21,9 @@ app.use(cors({
     // origin: '*',
     credentials: true
 }))
+app.use(cookieParser())
 app.use(morgan('dev'))
 app.use(express.json())
-app.use(cookieParser())
 app.use('/', router)
 
 module.exports = app
