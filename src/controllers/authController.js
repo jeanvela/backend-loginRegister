@@ -23,7 +23,8 @@ const register = async (req, res) => {
         const token = await createAccessToken({id: userSave._id})
         res.cookie('token', token, {
             sameSite: 'none', // para el deploy habilitar el uso de la cookie en solicitudes entre diferentes sitios.
-            secure: true
+            secure: true,
+            httpOnly: true,
         })
         res.status(200).json({
             id: userSave._id,
@@ -46,7 +47,8 @@ const login = async (req, res) => {
         const token = await createAccessToken({id: userFound._id})
         res.cookie('token', token, {
             sameSite: 'none', // para el deploy habilitar el uso de la cookie en solicitudes entre diferentes sitios.
-            secure: true
+            secure: true,
+            httpOnly: true,
         })
         res.status(200).json({
             // token: token,
@@ -64,7 +66,8 @@ const logout = async (req, res) => {
         await res.cookie('token', "", {
         expires: new Date(0),
         sameSite: 'none',
-        secure: true
+        secure: true,
+        httpOnly: true,
         })
         return res.sendStatus(200)
     } catch (error) {
