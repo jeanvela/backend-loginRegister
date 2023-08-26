@@ -21,7 +21,10 @@ const register = async (req, res) => {
 
         const userSave = await newUser.save()
         const token = await createAccessToken({id: userSave._id})
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            sameSite: 'none', // para el deploy habilitar el uso de la cookie en solicitudes entre diferentes sitios.
+            secure: true
+        })
         res.status(200).json({
             id: userSave._id,
             username: userSave.username,
@@ -41,7 +44,10 @@ const login = async (req, res) => {
 
         if (!isMacth) throw new Error('Invalid credential')
         const token = await createAccessToken({id: userFound._id})
-        res.cookie('token', token)
+        res.cookie('token', token, {
+            sameSite: 'none', // para el deploy habilitar el uso de la cookie en solicitudes entre diferentes sitios.
+            secure: true
+        })
         res.status(200).json({
             // token: token,
             id: userFound._id,
@@ -56,7 +62,9 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
     try {
         await res.cookie('token', "", {
-        expires: new Date(0)
+        expires: new Date(0),
+        sameSite: 'none',
+        secure: true
         })
         return res.sendStatus(200)
     } catch (error) {
