@@ -17,7 +17,7 @@ const app = express()
 
 app.use(cors({
     // origin: 'http://localhost:5173',
-    origin : 'https://login-register-39pz2ix9c-jeanvela.vercel.app/',
+    origin : 'https://login-register-359t0m16c-jeanvela.vercel.app',
     // origin: '*',
     credentials: true
 }))
