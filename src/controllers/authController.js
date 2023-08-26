@@ -22,7 +22,7 @@ const register = async (req, res) => {
         const userSave = await newUser.save()
         const token = await createAccessToken({id: userSave._id})
         res.cookie('token', token, {
-            sameSite: 'lax', // para el deploy habilitar el uso de la cookie en solicitudes entre diferentes sitios.
+            sameSite: 'none', // para el deploy habilitar el uso de la cookie en solicitudes entre diferentes sitios.
             secure: true,
             httpOnly: true,
         })
@@ -46,7 +46,7 @@ const login = async (req, res) => {
         if (!isMacth) throw new Error('Invalid credential')
         const token = await createAccessToken({id: userFound._id})
         res.cookie('token', token, {
-            sameSite: 'lax', // para el deploy habilitar el uso de la cookie en solicitudes entre diferentes sitios.
+            sameSite: 'none', // para el deploy habilitar el uso de la cookie en solicitudes entre diferentes sitios.
             secure: true,
             httpOnly: true,
         })
@@ -65,7 +65,7 @@ const logout = async (req, res) => {
     try {
         await res.cookie('token', "", {
         expires: new Date(0),
-        sameSite: 'lax',
+        sameSite: 'none',
         secure: true,
         httpOnly: true,
         })
